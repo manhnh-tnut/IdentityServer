@@ -1,0 +1,163 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Account";
+    Layout = "_LoginLayout";
+}
+<style>
+    .container-section {
+        margin: 0 auto;
+        display: grid;
+        place-items: center;
+        height: calc(100vh - 100px);
+    }
+
+    section:not(.d-none) {
+        opacity: 1;
+        transition: all 0.65s linear;
+    }
+
+    section.d-none {
+        opacity: 0;
+        transition: all 0.65s ease-out;
+    }
+</style>
+
+<section class="container-section">
+    <div class="container-fluid h-custom">
+        <section class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                @* <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                    class="img-fluid" alt="Sample image"> *@
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                    class="img-fluid" alt="Sample image">
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form asp-page-handler="login" method="post">
+                    <div class="d-flex flex-column">
+                        <p class="display-4 fw-normal mb-0 me-3">Sign in</p>
+                        <p class="lead fw-normal mb-0 me-3">Sign in for...</p>
+                    </div>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <input type="hidden" asp-for="Login.ReturnUrl" />
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" asp-for="Login.Email" class="form-control form-control-lg"
+                            placeholder="Enter a valid email address" required autofocus />
+                        <label class="form-label" asp-for="Login.Email">Email address</label>
+                        <span asp-validation-for="Login.Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <input type="password" asp-for="Login.Password" class="form-control form-control-lg"
+                            placeholder="Enter password" required />
+                        <label class="form-label" asp-for="Login.Password">Password</label>
+                        <span asp-validation-for="Login.Password" class="text-danger"></span>
+                    </div>
+
+                    @if (Model.Login.AllowRememberLogin)
+                    {
+                        <div class="d-flex justify-content-between align-items-center">
+                            <!-- Checkbox -->
+                        <div class="form-check mb-0">
+                                <input class="form-check-input me-2" type="checkbox" asp-for="Login.RememberLogin" />
+                                <label class="form-check-label" asp-for="Login.RememberLogin">
+                                    Remember login
+                                </label>
+                            </div>
+                            <a href="#!" class="text-body">Forgot password?</a>
+                        </div>
+                    }
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+                        @if (Model.Register.AllowRegistration)
+                        {
+                            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account?
+                                <a href="#!" class="link-danger">Register</a>
+                            </p>
+                        }
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section class="d-none row d-flex flex-row-reverse justify-content-center align-items-center h-100">
+            <div class="col-md-9 col-lg-6 col-xl-5">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                    class="img-fluid" alt="Sample image">
+                @* <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                    class="img-fluid" alt="Sample image"> *@
+            </div>
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+                <form asp-page-handler="register" method="post">
+                    <div class="d-flex flex-column">
+                        <p class="display-4 fw-normal mb-0 me-3">Sign Up</p>
+                        <p class="lead fw-normal mb-0 me-3">Sign up for...</p>
+                    </div>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <!-- Name input -->
+                    <div class="form-outline mb-3">
+                        <input type="text" asp-for="Register.Name" class="form-control form-control-lg"
+                            placeholder="Enter name" required />
+                        <label class="form-label" asp-for="Register.Name">Name</label>
+                        <span asp-validation-for="Register.Name" class="text-danger"></span>
+                    </div>
+
+                    <!-- Username input -->
+                    <div class="form-outline mb-3">
+                        <input type="text" asp-for="Register.UserName" class="form-control form-control-lg"
+                            placeholder="Enter userName" required />
+                        <label class="form-label" asp-for="Register.UserName">UserName</label>
+                        <span asp-validation-for="Register.UserName" class="text-danger"></span>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <input type="email" asp-for="Register.Email" class="form-control form-control-lg"
+                            placeholder="Enter a valid email address" required autofocus />
+                        <label class="form-label" asp-for="Register.Email">Email address</label>
+                        <span asp-validation-for="Register.Email" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <input type="password" asp-for="Register.Password" class="form-control form-control-lg"
+                            placeholder="Enter password" required />
+                        <label class="form-label" asp-for="Register.Password">Password</label>
+                        <span asp-validation-for="Register.Password" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-3">
+                        <input type="password" asp-for="Register.ConfirmPassword" class="form-control form-control-lg"
+                            placeholder="Confirm password" required />
+                        <label class="form-label" asp-for="Register.ConfirmPassword">Confirm Password</label>
+                        <span asp-validation-for="Register.ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button type="submit" class="btn btn-primary btn-lg"
+                            style="padding-left: 2.5rem; padding-right: 2.5rem;">Register</button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0">Have an account?
+                            <a href="#!" class="link-danger">Sign in</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+</section>
+
+@section Scripts{
+<script>
+    $(".container-section .container-fluid section").on("click", "a.link-danger", function (event) {
+        $(".container-section .container-fluid section").toggleClass("d-none")
+    });
+
+    if('@Request.Query["handler"]' === 'register'){
+        $(".container-section .container-fluid section").toggleClass("d-none");
+    }
+</script>
+}

@@ -1,0 +1,116 @@
+@page "/"
+@using Duende.IdentityServer.Extensions
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="welcome-block py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4"><img class="img-fluid" alt="Logo"
+            src='@UrlHelper.Content(RootConfiguration["AdminConfiguration:HomePageLogoUri"])'><br />@RootConfiguration["AdminConfiguration:PageTitle"]
+    </h1>
+    <p class="lead">@string.Format("Welcome to {0}",RootConfiguration["AdminConfiguration:PageTitle"])</p>
+</div>
+
+<div class="card-group mb-3 text-center">
+    @if (!User.IsAuthenticated())
+    {
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Login</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <span class="oi oi-lock-locked" title="Login" aria-hidden="true"></span>
+                </h1>
+                <a asp-page="/Account/Index" asp-route-handler="login" class="btn btn-lg btn-block btn-primary">Login</a>
+            </div>
+        </div>
+    }else
+    {
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Persisted Grants</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <span class="oi oi-key" title="Persisted Grants" aria-hidden="true"></span>
+                </h1>
+                <a asp-page="/Grants/Index" class="btn btn-lg btn-block btn-primary">Persisted
+                    Grants</a>
+            </div>
+        </div>
+    }
+
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Discovery Document</h4>
+        </div>
+        <div class="card-body">
+            <h1 class="card-title">
+                <span class="oi oi-monitor" title="Discovery Document" aria-hidden="true"></span>
+            </h1>
+            <a href="~/.well-known/openid-configuration" class="btn btn-lg btn-block btn-outline-primary">Discovery
+                Document</a>
+        </div>
+    </div>
+
+    @if (User.IsAuthenticated())
+    {
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">My profile</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <span class="oi oi-person" title="My profile" aria-hidden="true"></span>
+                </h1>
+                <a asp-page="/Manage/Index" class="btn btn-lg btn-block btn-primary">My profile</a>
+            </div>
+        </div>
+    }
+</div>
+@if (User.IsAuthenticated())
+{
+    <div class="card-group mb-3 text-center">
+
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">My personal data</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <span class="oi oi-cloud-download" title="My personal data" aria-hidden="true"></span>
+                </h1>
+                <a asp-page="/Manage/PersonalData" class="btn btn-lg btn-block btn-outline-primary">My
+                    personal data</a>
+            </div>
+        </div>
+
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Two-factor authentication</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <span class="oi oi-phone" title="Two-factor authentication" aria-hidden="true"></span>
+                </h1>
+                <a asp-page="/Manage/TwoFactorAuthentication"
+                class="btn btn-lg btn-block btn-primary">Two-factor authentication</a>
+            </div>
+        </div>
+
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal">Change password</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title">
+                    <span class="oi oi-pencil" title="Change password" aria-hidden="true"></span>
+                </h1>
+                <a asp-page="/Manage/ChangePassword"
+                class="btn btn-lg btn-block btn-outline-primary">Change
+                    password</a>
+            </div>
+        </div>
+    </div>
+}

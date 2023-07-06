@@ -1,0 +1,102 @@
+@page
+@model IndexModel
+
+<div class="consent-container">
+    <div class="row page-header">
+        <div class="col-sm-10">
+            @if (Model.Consent.ClientLogoUrl != null)
+            {
+                <div class="client-logo"><img src="Consent.ClientLogoUrl"></div>
+            }
+            <h1>
+                @Model.Consent.ClientName
+                <small>is requesting your permission</small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            @await Html.PartialAsync("_ValidationSummary")
+
+            <form asp-page="Index" class="consent-form">
+                <input type="hidden" asp-for="Consent.ReturnUrl" />
+
+                <div>Uncheck the permissions you do not wish to grant.</div>
+
+                @if (Model.Consent.IdentityScopes.Any())
+                {
+                    <div class="col-sm-12">
+                        <div class="card mt-3">
+                            <h5 class="card-header">
+                                <i class="fa fa-user"></i>
+                                Personal Information
+                            </h5>
+                            <div class="card-body">
+                                <ul class="list-group">
+                                    @foreach (var scope in Model.Consent.IdentityScopes)
+                                    {
+                                        @await Html.PartialAsync("_ScopeListItem", scope)
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Consent.ApiScopes.Any())
+                {
+                    <div class="col-sm-12">
+                        <div class="card mt-3">
+                            <h5 class="card-header">
+                                <i class="fa fa-lock"></i> Application Access
+                            </h5>
+                            <div class="card-body">
+
+                                <ul class="list-group">
+                                    @foreach (var scope in Model.Consent.ApiScopes)
+                                    {
+                                        @await Html.PartialAsync("_ScopeListItem", scope)
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                @if (Model.Consent.AllowRememberConsent)
+                {
+                    <div class="row m-4">
+                        <div class="col-sm-12">
+                            <div class="toggle-button__input">
+                                <toggle-button>
+                                    <input asp-for="Consent.RememberConsent" />
+                                </toggle-button>
+                            </div>
+                            <div class="toggle-button__text">
+                                <strong>Remember My Decision</strong>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="row ml-4 mr-4">
+                    <div class="col-sm-9 mt-3">
+                        <button name="button" value="yes" class="btn btn-primary" autofocus>Yes, Allow</button>
+                        <button name="button" value="no" class="btn">No, Do Not Allow</button>
+                    </div>
+
+                    <div class="col-sm-3 mt-3">
+                        @if (Model.Consent.ClientUrl != null)
+                        {
+                            <a class="btn btn-outline-primary" target="_blank" href="@Model.Consent.ClientUrl">
+                                <i class="fa fa-info-circle"></i>
+                                <strong>@Model.Consent.ClientName</strong>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{89E478E4-2A38-41E9-A956-F9C7B4BE00BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityServer", "src\backend\IdentityServer.csproj", "{3D348D50-A8A9-4B2D-89D7-45CE1D5EDA6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D348D50-A8A9-4B2D-89D7-45CE1D5EDA6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D348D50-A8A9-4B2D-89D7-45CE1D5EDA6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D348D50-A8A9-4B2D-89D7-45CE1D5EDA6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D348D50-A8A9-4B2D-89D7-45CE1D5EDA6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3D348D50-A8A9-4B2D-89D7-45CE1D5EDA6B} = {89E478E4-2A38-41E9-A956-F9C7B4BE00BF}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,12 @@
+@page
+@model RedirectModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+<h1>@Localizer["Title"]</h1>
+<p>@Localizer["SubTitle"]</p>
+<meta http-equiv="refresh" content="0;url=@Model.RedirectUrl" data-url="@Model.RedirectUrl">
+@section Scripts{
+<script>
+    window.location.href = document.querySelector("meta[http-equiv=refresh]").getAttribute("data-url");
+</script>
+}

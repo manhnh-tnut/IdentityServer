@@ -1,0 +1,36 @@
+@page "/device/user-code-capture"
+@model UserCodeCaptureModel
+
+<div class="col-sm-6">
+    <div class="card mt-3">
+        <h5 class="card-header">User Code</h5>
+        <div class="card-body">
+            <form method="post">
+                <fieldset>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="input-usercode">
+                                        <i class="fa fa-barcode"></i>
+                                    </span>
+                                </div>
+                                <input for="userCode" placeholder="Please enter the code displayed on your device"
+                                    class="form-control" name="userCode" aria-describedby="input-usercode" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Button-->
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>
